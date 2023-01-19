@@ -29,9 +29,9 @@ jobs:
       - uses: actions/checkout@v3
 
       - run: |
-        mkdir -p ${{ env.dt }}
-        echo hello > ${{ env.dt }}
-        ls -l
+          mkdir -p ${{ env.dt }}
+          echo hello > ${{ env.dt }}
+          ls -l
       
       - uses: actions/upload-artifact@v3
         with:
