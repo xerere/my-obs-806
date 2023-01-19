@@ -20,21 +20,20 @@ jobs:
     # The type of runner that the job will run on
     runs-on: self-hosted
 
-    env:
-      dt: date '+%Y-%m-%d-%H-%M-%S'
-
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       #- uses: actions/checkout@v3
 
-      - run: |
-          mkdir -p $(${{ env.dt }})
-          echo hello > $(${{ env.dt }})/hello.txt
-          ls -l
+      - id: create-folder
+        run: |
+          folder=$($date '+%Y-%m-%d-%H-%M-%S')
+          mkdir -p $folder
+          echo hello > $folder/hello.txt
+          echo "folder=$folder" >> $GITHUB_OUTPUT
       
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: ./$(${{ env.dt }})
+          path: ./${{ steps.create-folder.outputs.folder }}
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
