@@ -27,13 +27,13 @@ jobs:
 
       - id: create-folder
         run: |
-          folder=$(date '+%Y-%m-%d-%H-%M-%S')
-          mkdir -p $folder
-          echo hello > $folder/hello.txt
+          dt=$(date '+%Y-%m-%d-%H-%M-%S')
+          mkdir -p $dt
+          echo hello > foobar/$folder/hello.txt
           echo "folder=$folder" >> $GITHUB_OUTPUT
       
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: ./${{ steps.create-folder.outputs.folder }}
+          path: ./foobar
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
