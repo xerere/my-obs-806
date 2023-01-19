@@ -30,7 +30,7 @@ jobs:
 
       - run: |
           mkdir -p $(${{ env.dt }})
-          echo hello > $(${{ env.dt }})
+          echo hello > $(${{ env.dt }})/hello.txt
           ls -l
       
       - uses: actions/upload-artifact@v3
