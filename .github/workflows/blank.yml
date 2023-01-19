@@ -28,12 +28,12 @@ jobs:
       - id: create-folder
         run: |
           alwaysNewFolder=$(date '+%Y-%m-%d-%H-%M-%S')
-          mkdir -p foobar/$alwaysNewFolder
-          echo hello > foobar/$alwaysNewFolder/hello.txt
+          mkdir -p $alwaysNewFolder
+          echo hello > $alwaysNewFolder/hello.txt
           echo "folder=$alwaysNewFolder" >> $GITHUB_OUTPUT
       
       - uses: actions/upload-artifact@v3
         with:
-          name: my-artifact
-          path: ./foobar
+          name: ${{ steps.create-folder.outputs.folder }}
+          path: ./${{ steps.create-folder.outputs.folder }}
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
