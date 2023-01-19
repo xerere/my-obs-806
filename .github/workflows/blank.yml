@@ -27,10 +27,10 @@ jobs:
 
       - id: create-folder
         run: |
-          dt=$(date '+%Y-%m-%d-%H-%M-%S')
+          alwaysNewFolder=$(date '+%Y-%m-%d-%H-%M-%S')
           mkdir -p $dt
-          echo hello > foobar/$folder/hello.txt
-          echo "folder=$folder" >> $GITHUB_OUTPUT
+          echo hello > foobar/$alwaysNewFolder/hello.txt
+          echo "folder=$alwaysNewFolder" >> $GITHUB_OUTPUT
       
       - uses: actions/upload-artifact@v3
         with:
