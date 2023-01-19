@@ -36,5 +36,5 @@ jobs:
       - uses: actions/upload-artifact@v3
         with:
           name: my-artifact
-          path: ./myfolder
+          path: ./$(${{ env.dt }})
           if-no-files-found: error # 'warn' or 'ignore' are also available, defaults to `warn`
